@@ -1,0 +1,52 @@
+<header class="header flex a-i-c j-c-s">
+  <div class="title flex a-i-c">
+    <div class="fill flex a-i-c">
+      <span>{{ title }}</span>
+    </div>
+  </div>
+  <div class="right flex a-i-c">
+    <div class="tabs">
+      <span
+        *ngFor="let tab of menuItems | keyvalue"
+        [ngClass]="{ tab: true, active: tab.key === activeTab }"
+        [routerLink]="[tab.key]"
+      >
+        {{ tab.key }}
+      </span>
+    </div>
+    <div class="divider"></div>
+    <a class="icon social-github cursor-pointer" [href]="githubLink" target="_blank"></a>
+  </div>
+</header>
+
+<div *ngIf="asideVisible" class="backdrop"></div>
+<aside [ngClass]="{ aside: true, visible: asideVisible }" (click)="changeAsideVisible($event)">
+  <ul class="group">
+    <li
+      *ngFor="let menu of menuItems[activeTab]"
+      [routerLink]="menu.router"
+      [ngClass]="{ 'menu-item': true, active: menu.value === activeMenu }"
+      (click)="changeAsideVisibleHidden($event)"
+    >
+      {{ menu.label }}
+    </li>
+  </ul>
+</aside>
+
+<section class="local-nav flex a-i-c j-c-s">
+  <div class="left">
+    <div class="cursor-pointer flex a-i-c" (click)="changeAsideVisible($event)">
+      <span class="icon"></span>
+      <span class="label">Menu</span>
+    </div>
+  </div>
+  <div class="right">
+    <span class="label cursor-pointer" (click)="returnToTop()">Return to top</span>
+  </div>
+</section>
+
+<main class="main">
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</main>

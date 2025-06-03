@@ -37,7 +37,7 @@ import {
 } from './core';
 
 @Component({
-  selector: 'virtual-dnd-list, [virtual-dnd-list]',
+  selector: 'virtual-list, [virtual-list]',
   template: `
     <ng-container
       *ngTemplateOutlet="spacerTemplate; context: { $implicit: range.front }"
@@ -49,7 +49,6 @@ import {
       [dataKey]="dataKey"
       [dragging]="dragging"
       [chosenKey]="chosenKey"
-      [itemClass]="itemClass"
       [isHorizontal]="isHorizontal"
       (sizeChange)="onSizeChange($event)"
     >
@@ -71,8 +70,8 @@ import {
           [ngStyle]="{
             border: 0,
             padding: 0,
-            width: this.isHorizontal ? offset + 'px' : '',
-            height: this.isHorizontal ? '' : offset + 'px'
+            width: isHorizontal ? offset + 'px' : '',
+            height: isHorizontal ? '' : offset + 'px'
           }"
         ></td>
       </tr>
@@ -81,17 +80,16 @@ import {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => VirtualDndListComponent),
+      useExisting: forwardRef(() => VirtualListComponent),
       multi: true,
     },
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class VirtualDndListComponent<T>
-  implements OnInit, OnDestroy, OnChanges, ControlValueAccessor
-{
+export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
   @Input() size: number;
   @Input() keeps: number = 30;
+  @Input() wrapper: HTMLElement;
   @Input() scroller: HTMLElement | Document | Window;
   @Input() tableMode: boolean = false;
   @Input() direction: 'vertical' | 'horizontal' = 'vertical';
@@ -99,7 +97,6 @@ export class VirtualDndListComponent<T>
   @Input() debounceTime: number = 0;
   @Input() throttleTime: number = 0;
 
-  @Input() wrapper: HTMLElement;
   @Input() delay: number;
   @Input() group: string | Group;
   @Input() handle: string | ((event: Event & (TouchEvent | MouseEvent)) => boolean);
@@ -107,8 +104,7 @@ export class VirtualDndListComponent<T>
   @Input() sortable: boolean = true;
   @Input() lockAxis: 'x' | 'y' | '' = '';
   @Input() disabled: boolean = false;
-  @Input() itemClass: string = 'virtual-dnd-list-item';
-  @Input() draggable: string = '.virtual-dnd-list-item';
+  @Input() draggable: string = '[role="item"]';
   @Input() animation: number = 150;
   @Input() autoScroll: boolean = true;
   @Input() scrollSpeed: ScrollSpeed = { x: 10, y: 10 };

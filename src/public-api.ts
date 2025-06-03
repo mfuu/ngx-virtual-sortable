@@ -2,5 +2,5 @@
  * Public API Surface of project
  */
 
-export * from './lib/virtual-dnd-list.component';
-export * from './lib/virtual-dnd-list.module';
+export * from './lib/virtual-list.component';
+export * from './lib/virtual-list.module';

@@ -1,0 +1,52 @@
+.list {
+  min-height: 500px;
+  max-height: 75vh;
+  overflow: hidden auto;
+  border: 1px solid rgb(240, 240, 240);
+  border-radius: 4px;
+}
+
+.list.horizontal {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: auto hidden;
+}
+
+.list-item {
+  position: relative;
+  padding: 16px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.horizontal .list-item {
+  min-width: 100px;
+  height: 100px;
+  border: 1px solid #57bbb459;
+}
+
+.horizontal .list-wrapper {
+  display: flex;
+}
+
+.list-item:not(:last-child) {
+  border-bottom-color: #57bbb459;
+}
+
+.list-item.chosen {
+  border-color: #1984ff !important;
+}
+
+.handle {
+  cursor: move;
+}
+
+.group {
+  display: flex;
+  justify-content: space-between;
+
+  .list {
+    width: 49%;
+  }
+}

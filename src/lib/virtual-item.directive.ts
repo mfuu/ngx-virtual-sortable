@@ -18,7 +18,6 @@ export class VirtualItem<T> {
   @Input() dataKey: string | string[];
   @Input() chosenKey: string;
   @Input() dragging: boolean;
-  @Input() itemClass: string;
   @Input() isHorizontal: boolean;
 
   @Output() sizeChange: EventEmitter<{ key: string | number; size: number }> = new EventEmitter();
@@ -48,8 +47,8 @@ export class VirtualItem<T> {
 
     if (!this._element) return;
 
+    this.render2.setAttribute(this._element, 'role', 'item');
     this.render2.setAttribute(this._element, 'data-key', this._key as string);
-    this.render2.addClass(this._element, this.itemClass);
     this.updateElementStyle();
 
     this._sizeObserver = new ResizeObserver(() => {
@@ -65,9 +64,6 @@ export class VirtualItem<T> {
     if (changes['chosenKey'] && this._element) {
       this.updateElementStyle();
     }
-    if (changes['itemClass'] && this._element) {
-      this.updateElementClass(changes);
-    }
   }
 
   ngOnDestroy(): void {
@@ -79,11 +75,5 @@ export class VirtualItem<T> {
     const isChosen = isSameValue(this._key, this.chosenKey);
     const display = this.dragging && isChosen ? 'none' : '';
     this.render2.setStyle(this._element, 'display', display);
-  }
-
-  private updateElementClass(changes: SimpleChanges) {
-    const { previousValue, currentValue } = changes['itemClass'];
-    this.render2.removeClass(this._element, previousValue);
-    this.render2.addClass(this._element, currentValue);
   }
 }

@@ -1,22 +1,22 @@
-# ngx-virtual-dnd-list
+# ngx-virtual-sortable
 
-[![npm](https://img.shields.io/npm/v/ngx-virtual-dnd-list.svg)](https://www.npmjs.com/package/ngx-virtual-dnd-list) [![npm](https://img.shields.io/npm/dm/ngx-virtual-dnd-list.svg)](https://www.npmjs.com/package/ngx-virtual-dnd-list) [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![npm](https://img.shields.io/npm/v/ngx-virtual-sortable.svg)](https://www.npmjs.com/package/ngx-virtual-sortable) [![npm](https://img.shields.io/npm/dm/ngx-virtual-sortable.svg)](https://www.npmjs.com/package/ngx-virtual-sortable) [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
 A virtual scrolling list component that can be sorted by dragging
 
-### [Live demo](https://mfuu.github.io/ngx-virtual-dnd-list/)
+### [Live demo](https://mfuu.github.io/ngx-virtual-sortable/)
 
 ## Simple usage
 
 ```bash
-npm i ngx-virtual-dnd-list
+npm i ngx-virtual-sortable
 ```
 
 **`virutal-list.module.ts`**
 
 ```ts
 ...
-import { VirtualDndListModule } from 'ngx-virtual-dnd-list';
+import { VirtualListModule } from 'ngx-virtual-sortable';
 
 @NgModule({
   declarations: [
@@ -24,11 +24,11 @@ import { VirtualDndListModule } from 'ngx-virtual-dnd-list';
   ],
   imports: [
     ...
-    VirtualDndListModule
+    VirtualListModule
   ],
   providers: []
 })
-export class VirtualListModule { }
+export class ListModule { }
 ```
 
 **`virutal-list.component.ts`**
@@ -41,7 +41,7 @@ import { Component } from '@angular/core';
   template: `
     <div #scroller>
       <div
-        virtual-dnd-list
+        virtual-list
         [scroller]="scroller"
         [dataKey]="'id'"
         [keeps]="30"
@@ -112,24 +112,23 @@ export class AppComponent {
 
 **Uncommonly used**
 
-| **Prop**           | **Type**      | **Default**              | **Description**                                                                                                                |
-| ------------------ | ------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `wrapper`          | `HTMLElement` | `-`                      | Virtual list wrapper                                                                                                           |
-| `sortable`         | `Boolean`     | `true`                   | Allow Sorting by Dragging                                                                                                      |
-| `draggable`        | `String`      | `.virtual-dnd-list-item` | Specifies which items inside the element should be draggable. If does not set a value, the default list element can be dragged |
-| `itemClass`        | `String`      | `virtual-dnd-list-item`  | Default item class                                                                                                             |
-| `disabled`         | `Boolean`     | `false`                  | Disables the sortable if set to true                                                                                           |
-| `animation`        | `Number`      | `150`                    | Animation speed moving items when sorting                                                                                      |
-| `autoScroll`       | `Boolean`     | `true`                   | Automatic scrolling when moving to the edge of the container                                                                   |
-| `scrollSpeed`      | `Object`      | `{ x: 10, y: 10}`        | Vertical&Horizontal scrolling speed (px)                                                                                       |
-| `scrollThreshold`  | `Number`      | `55`                     | Threshold to trigger autoscroll                                                                                                |
-| `delay`            | `Number`      | `0`                      | Time in milliseconds to define when the sorting should start                                                                   |
-| `delayOnTouchOnly` | `Boolean`     | `false`                  | Only delay on press if user is using touch                                                                                     |
-| `fallbackOnBody`   | `Boolean`     | `false`                  | Appends the ghost element into the document's body                                                                             |
-| `ghostClass`       | `String`      | `''`                     | The class of the mask element when dragging                                                                                    |
-| `ghostStyle`       | `Object`      | `{}`                     | The style of the mask element when dragging                                                                                    |
-| `chosenClass`      | `String`      | `''`                     | The class of the selected element when dragging                                                                                |
-| `placeholderClass` | `String`      | `''`                     | Class name for the drop placeholder                                                                                            |
+| **Prop**           | **Type**      | **Default**       | **Description**                                                                                                                |
+| ------------------ | ------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `wrapper`          | `HTMLElement` | `-`               | Virtual list wrapper                                                                                                           |
+| `sortable`         | `Boolean`     | `true`            | Allow Sorting by Dragging                                                                                                      |
+| `draggable`        | `String`      | `[role="item"]`   | Specifies which items inside the element should be draggable. If does not set a value, the default list element can be dragged |
+| `disabled`         | `Boolean`     | `false`           | Disables the sortable if set to true                                                                                           |
+| `animation`        | `Number`      | `150`             | Animation speed moving items when sorting                                                                                      |
+| `autoScroll`       | `Boolean`     | `true`            | Automatic scrolling when moving to the edge of the container                                                                   |
+| `scrollSpeed`      | `Object`      | `{ x: 10, y: 10}` | Vertical&Horizontal scrolling speed (px)                                                                                       |
+| `scrollThreshold`  | `Number`      | `55`              | Threshold to trigger autoscroll                                                                                                |
+| `delay`            | `Number`      | `0`               | Time in milliseconds to define when the sorting should start                                                                   |
+| `delayOnTouchOnly` | `Boolean`     | `false`           | Only delay on press if user is using touch                                                                                     |
+| `fallbackOnBody`   | `Boolean`     | `false`           | Appends the ghost element into the document's body                                                                             |
+| `ghostClass`       | `String`      | `''`              | The class of the mask element when dragging                                                                                    |
+| `ghostStyle`       | `Object`      | `{}`              | The style of the mask element when dragging                                                                                    |
+| `chosenClass`      | `String`      | `''`              | The class of the selected element when dragging                                                                                |
+| `placeholderClass` | `String`      | `''`              | Class name for the drop placeholder                                                                                            |
 
 > If a page has multiple virtual lists and the virtual lists are in the top-down structure, transfer the wrapper to avoid the situation that the page cannot be dragged.
 
@@ -151,25 +150,25 @@ export class AppComponent {
 
 ```ts
 import { Component, ViewChild } from '@angular/core';
-import { VirtualDndListComponent } from 'ngx-virtual-dnd-list';
+import { VirtualListComponent } from 'ngx-virtual-sortable';
 
 @Component({
   selector: 'virutal-list',
   template: `
     <div #scroller>
-      <virtual-dnd-list
+      <virtual-list
         #virtualList
         ...
       >
         ...
-      </virtual-dnd-list>
+      </virtual-list>
     </div>
     <button (click)="scrollToBottom()">scroll to bottom</button>
   `,
   styles: [],
 })
-export class VirtualListComponent {
-  @ViewChild('virtualList') virtualList: VirtualDndListComponent;
+export class ListComponent {
+  @ViewChild('virtualList') virtualList: VirtualListComponent;
 
   scrollToBottom() {
     this.virtualList.scrollToBottom();
