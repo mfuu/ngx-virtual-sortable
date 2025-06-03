@@ -1,6 +1,6 @@
 {
   "name": "ngx-virtual-sortable",
-  "version": "13.0.0",
+  "version": "13.0.1",
   "scripts": {
     "build": "ng build virtual-list && rm -r dist/src",
     "publish": "npm run build && npm publish ./dist",
