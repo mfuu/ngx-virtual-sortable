@@ -43,6 +43,7 @@
             "outputPath": "docs/dist",
             "index": "docs/src/index.html",
             "main": "docs/src/main.ts",
+            "baseHref": "/ngx-virtual-sortable/",
             "polyfills": "docs/src/polyfills.ts",
             "tsConfig": "docs/tsconfig.app.json",
             "inlineStyleLanguage": "less",
