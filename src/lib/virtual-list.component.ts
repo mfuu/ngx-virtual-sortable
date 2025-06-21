@@ -362,10 +362,9 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
     }
 
     const sizes = this.virtual.sizes.size;
-    const renders = Math.min(this.keeps, this.modelValue.length);
     this.virtual.onItemResized(key, size);
 
-    if (sizes === renders - 1) {
+    if (sizes === this.keeps - 1 && this.modelValue.length > this.keeps) {
       this.virtual.updateRange(this.range);
     }
   }
