@@ -6,6 +6,8 @@ import { DemoBasicComponent } from './components/basic.component';
 import { DemoGroupComponent } from './components/group.component';
 import { DemoHorizontalComponent } from './components/horizontal.component';
 import { DemoTableComponent } from './components/table.component';
+import { DemoScrollToComponent } from './components/scrollto.component';
+import { DemoInfinityComponent } from './components/infinity.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { DemoTableComponent } from './components/table.component';
     DemoGroupComponent,
     DemoHorizontalComponent,
     DemoTableComponent,
+    DemoScrollToComponent,
+    DemoInfinityComponent,
   ],
   imports: [FormsModule, DemoRoutingModule, VirtualListModule],
 })

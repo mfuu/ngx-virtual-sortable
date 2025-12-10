@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { getPageData } from '../../../shared/utils';
 
 @Component({
-  selector: 'demo-basic',
+  selector: 'demo-table',
   template: `
     <table #tableScroller class="list">
       <thead style="position: sticky; top: 0px;">
@@ -16,12 +16,17 @@ import { getPageData } from '../../../shared/utils';
         virtual-list
         [scroller]="tableScroller"
         dataKey="id"
+        handle=".handle"
+        class="list-wrapper"
         [tableMode]="true"
         [(ngModel)]="list"
       >
         <ng-template let-item let-index="index">
           <tr class="row">
-            <td>{{ index }}</td>
+            <td>
+              <span class="index">#{{ item.index }}</span>
+              <span class="handle">☰</span>
+            </td>
             <td>{{ item.name }}</td>
             <td>{{ item.desc }}</td>
           </tr>

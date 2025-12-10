@@ -11,6 +11,7 @@ import { getPageData } from '../../../shared/utils';
         [scroller]="scroller"
         handle=".handle"
         chosenClass="chosen"
+        class="list-wrapper"
         [(ngModel)]="list"
       >
         <ng-template #item let-item let-index="index">

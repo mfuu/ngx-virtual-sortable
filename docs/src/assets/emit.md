@@ -38,7 +38,7 @@ const {
 } = dropEvent
 ```
 
-## `rangeChange`
+## `onRangeChange`
 
 drag is completed
 

@@ -9,15 +9,14 @@ import {
   EmbeddedViewRef,
   ViewContainerRef,
 } from '@angular/core';
-import { getDataKey, isSameValue } from './core';
+import { getDataKey, isEqual } from './core';
 
 @Directive({
   selector: '[virtualItem]',
 })
 export class VirtualItem<T> {
   @Input() dataKey: string | string[];
-  @Input() chosenKey: string;
-  @Input() dragging: boolean;
+  @Input() dragging: string;
   @Input() isHorizontal: boolean;
 
   @Output() sizeChange: EventEmitter<{ key: string | number; size: number }> = new EventEmitter();
@@ -61,7 +60,7 @@ export class VirtualItem<T> {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['chosenKey'] && this._element) {
+    if (changes['dragging'] && this._element) {
       this.updateElementStyle();
     }
   }
@@ -72,8 +71,8 @@ export class VirtualItem<T> {
   }
 
   private updateElementStyle() {
-    const isChosen = isSameValue(this._key, this.chosenKey);
-    const display = this.dragging && isChosen ? 'none' : '';
+    const isDragging = isEqual(this._key, this.dragging);
+    const display = isDragging ? 'none' : '';
     this.render2.setStyle(this._element, 'display', display);
   }
 }

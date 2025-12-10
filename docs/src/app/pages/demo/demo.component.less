@@ -13,6 +13,10 @@
   overflow: auto hidden;
 }
 
+.list-wrapper {
+  overflow: hidden;
+}
+
 .list-item {
   position: relative;
   padding: 16px;
@@ -48,5 +52,34 @@
 
   .list {
     width: 49%;
+  }
+}
+
+.footer {
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.loading {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #000;
+  border-top-color: rgba(0, 0, 0, 0.2);
+  border-right-color: rgba(0, 0, 0, 0.2);
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  border-radius: 100%;
+
+  animation: circle infinite 0.75s linear;
+}
+
+@keyframes circle {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -20,14 +20,14 @@ export class AppComponent {
         router: ['guide/start'],
       },
       {
-        label: 'Emits',
-        value: 'emit',
-        router: ['guide/emit'],
-      },
-      {
         label: 'Props',
         value: 'prop',
         router: ['guide/prop'],
+      },
+      {
+        label: 'Emits',
+        value: 'emit',
+        router: ['guide/emit'],
       },
       {
         label: 'Methods',
@@ -50,6 +50,16 @@ export class AppComponent {
         label: 'Horizontal',
         value: 'horizontal',
         router: ['demo/horizontal'],
+      },
+      {
+        label: 'ScrollTo',
+        value: 'scrollto',
+        router: ['demo/scrollto'],
+      },
+      {
+        label: 'Infinity',
+        value: 'infinity',
+        router: ['demo/infinity'],
       },
       {
         label: 'TableMode',

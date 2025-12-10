@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { getPageData } from '../../../shared/utils';
 
 @Component({
-  selector: 'demo-basic',
+  selector: 'demo-group',
   template: `
     <div class="group">
       <div #scroller1 class="list">
@@ -13,12 +13,13 @@ import { getPageData } from '../../../shared/utils';
           handle=".handle"
           group="group"
           chosenClass="chosen"
+          class="list-wrapper"
           [(ngModel)]="list1"
         >
           <ng-template #item let-item let-index="index">
             <div class="list-item">
               <div class="flex j-c-s">
-                <span class="index">{{ '1-' + item.index }}</span>
+                <span class="index">{{ item.index }}</span>
                 <span class="handle">☰</span>
               </div>
             </div>
@@ -39,7 +40,7 @@ import { getPageData } from '../../../shared/utils';
           <ng-template #item let-item let-index="index">
             <div class="list-item">
               <div class="flex j-c-s">
-                <span class="index">{{ '2-' + item.index }}</span>
+                <span class="index">{{ item.index }}</span>
                 <span class="handle">☰</span>
               </div>
             </div>
