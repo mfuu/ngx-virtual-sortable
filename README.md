@@ -84,16 +84,16 @@ export class AppComponent {
 | `onDrop`        | Element dragging is completed        |
 | `onRangeChange` | List rendering range changed         |
 
-## Attributes
+## Props
 
-### Required Attributes
+### Required Props
 
 | **Prop**   | **Type**                  | **Description**                                                       |
 | ---------- | ------------------------- | --------------------------------------------------------------------- |
 | `data-key` | `String`                  | The unique identifier of each piece of data, in the form of `'a.b.c'` |
 | `scroller` | `HTMLElement \| Document` | Virtual list scrolling element                                        |
 
-### Optional Attributes
+### Optional Props
 
 **Commonly used**
 

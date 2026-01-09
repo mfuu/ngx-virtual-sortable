@@ -18,8 +18,8 @@ import {
   ChangeDetectorRef,
   ViewEncapsulation,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Group, ScrollSpeed, SortableEvent } from 'sortable-dnd';
+import { type ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import type { Group, ScrollSpeed, SortableEvent } from 'sortable-dnd';
 import {
   debounce,
   getDataKey,
@@ -128,7 +128,7 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
   @Input() autoScroll: boolean = true;
   @Input() scrollSpeed: ScrollSpeed = { x: 10, y: 10 };
   @Input() ghostClass: string = '';
-  @Input() ghostStyle: any;
+  @Input() ghostStyle: Partial<CSSStyleDeclaration> = {};
   @Input() chosenClass: string = '';
   @Input() placeholderClass: string = '';
   @Input() appendToBody: boolean = false;
