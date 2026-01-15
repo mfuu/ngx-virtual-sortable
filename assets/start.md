@@ -3,7 +3,7 @@
 ## Installation
 
 ```sh [npm]
-$ npm i ngx-virtual-dnd-list
+$ npm i ngx-virtual-sortable
 ```
 
 ## Simple Usage
