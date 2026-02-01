@@ -108,6 +108,7 @@ let draggingItem;
 export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, ControlValueAccessor {
   @Input() size: number;
   @Input() keeps: number = 30;
+  @Input() buffer: number;
   @Input() wrapper: HTMLElement;
   @Input() scroller: HTMLElement | Document | Window;
   @Input() tableMode: boolean = false;
@@ -229,7 +230,7 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
   ngOnChanges(changes: SimpleChanges): void {
     [...VirtualAttrs, ...SortableAttrs].forEach((key) => {
       if (key in changes) {
-        this.VS?.option(key as keyof Options<T>, this[key]);
+        this.VS?.option(key as keyof Options<KeyValueType>, this[key]);
       }
     });
   }
@@ -316,11 +317,10 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
     const vsAttributes = [...VirtualAttrs, ...SortableAttrs].reduce((res, key) => {
       res[key] = this[key];
       return res;
-    }, {});
+    }, {} as Options<KeyValueType>);
 
     this.VS = new VirtualSortable<KeyValueType>(this.el.nativeElement, {
       ...vsAttributes,
-      buffer: Math.round(this.keeps / 3),
       wrapper: this.el.nativeElement,
       scroller: this.scroller,
       uniqueKeys: this.uniqueKeys,

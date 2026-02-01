@@ -112,24 +112,25 @@ export class AppComponent {
 
 **Uncommonly used**
 
-| **Prop**             | **Type**      | **Default**       | **Description**                                              |
-| -------------------- | ------------- | ----------------- | ------------------------------------------------------------ |
-| `wrapper`            | `HTMLElement` | `-`               | Virtual list wrapper                                         |
-| `sortable`           | `Boolean`     | `true`            | Allow Sorting by Dragging                                    |
-| `draggable`          | `String`      | `[role="item"]`   | Specifies which items inside the element should be draggable |
-| `disabled`           | `Boolean`     | `false`           | Disables the sortable if set to true                         |
-| `animation`          | `Number`      | `150`             | Animation speed moving items when sorting                    |
-| `autoScroll`         | `Boolean`     | `true`            | Automatic scrolling when moving to the edge of the container |
-| `scrollSpeed`        | `Object`      | `{ x: 10, y: 10}` | Vertical&Horizontal scrolling speed (px)                     |
-| `scrollThreshold`    | `Number`      | `55`              | Threshold to trigger autoscroll                              |
-| `delay`              | `Number`      | `0`               | Time in milliseconds to define when the sorting should start |
-| `delayOnTouchOnly`   | `Boolean`     | `false`           | Only delay on press if user is using touch                   |
-| `appendToBody`       | `Boolean`     | `false`           | Appends the ghost element into the document's body           |
-| `dropOnAnimationEnd` | `Boolean`     | `true`            | Whether to trigger the drop event when the animation ends    |
-| `ghostClass`         | `String`      | `''`              | The class of the mask element when dragging                  |
-| `ghostStyle`         | `Object`      | `{}`              | The style of the mask element when dragging                  |
-| `chosenClass`        | `String`      | `''`              | The class of the selected element when dragging              |
-| `placeholderClass`   | `String`      | `''`              | Class name for the drop placeholder                          |
+| **Prop**             | **Type**      | **Default**             | **Description**                                              |
+| -------------------- | ------------- | ----------------------- | ------------------------------------------------------------ |
+| `wrapper`            | `HTMLElement` | `-`                     | Virtual list wrapper                                         |
+| `buffer`             | `Number`      | `Math.round(keeps / 3)` | Buffer size to detect range change                           |
+| `sortable`           | `Boolean`     | `true`                  | Allow Sorting by Dragging                                    |
+| `draggable`          | `String`      | `[role="item"]`         | Specifies which items inside the element should be draggable |
+| `disabled`           | `Boolean`     | `false`                 | Disables the sortable if set to true                         |
+| `animation`          | `Number`      | `150`                   | Animation speed moving items when sorting                    |
+| `autoScroll`         | `Boolean`     | `true`                  | Automatic scrolling when moving to the edge of the container |
+| `scrollSpeed`        | `Object`      | `{ x: 10, y: 10}`       | Vertical&Horizontal scrolling speed (px)                     |
+| `scrollThreshold`    | `Number`      | `55`                    | Threshold to trigger autoscroll                              |
+| `delay`              | `Number`      | `0`                     | Time in milliseconds to define when the sorting should start |
+| `delayOnTouchOnly`   | `Boolean`     | `false`                 | Only delay on press if user is using touch                   |
+| `appendToBody`       | `Boolean`     | `false`                 | Appends the ghost element into the document's body           |
+| `dropOnAnimationEnd` | `Boolean`     | `true`                  | Whether to trigger the drop event when the animation ends    |
+| `ghostClass`         | `String`      | `''`                    | The class of the mask element when dragging                  |
+| `ghostStyle`         | `Object`      | `{}`                    | The style of the mask element when dragging                  |
+| `chosenClass`        | `String`      | `''`                    | The class of the selected element when dragging              |
+| `placeholderClass`   | `String`      | `''`                    | Class name for the drop placeholder                          |
 
 ## Public Methods
 
