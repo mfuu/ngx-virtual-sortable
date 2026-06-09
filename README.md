@@ -80,6 +80,7 @@ export class AppComponent {
 | --------------- | ------------------------------------ |
 | `onTop`         | Scrolled to top of scroll element    |
 | `onBottom`      | Scrolled to bottom of scroll element |
+| `onScroll`      | Scroll event                         |
 | `onDrag`        | Element dragging started             |
 | `onDrop`        | Element dragging is completed        |
 | `onRangeChange` | List rendering range changed         |

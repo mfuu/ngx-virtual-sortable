@@ -90,7 +90,7 @@ let draggingItem;
             border: 0,
             padding: 0,
             width: isHorizontal ? offset + 'px' : '',
-            height: isHorizontal ? '' : offset + 'px'
+            height: isHorizontal ? '' : offset + 'px',
           }"
         ></td>
       </tr>
@@ -139,6 +139,7 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
 
   @Output() onTop = new EventEmitter();
   @Output() onBottom = new EventEmitter();
+  @Output() onScroll = new EventEmitter<ScrollEvent>();
   @Output() onDrag: EventEmitter<IDragEvent<T>> = new EventEmitter();
   @Output() onDrop: EventEmitter<IDropEvent<T>> = new EventEmitter();
   @Output() onRangeChange: EventEmitter<Range> = new EventEmitter();
@@ -324,10 +325,10 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
       wrapper: this.el.nativeElement,
       scroller: this.scroller,
       uniqueKeys: this.uniqueKeys,
-      onDrag: (event) => this.onSortableDrag(event),
-      onDrop: (event) => this.onSortableDrop(event),
-      onScroll: (event) => this.onScroll(event),
-      onUpdate: (range, changed) => this.onUpdate(range, changed),
+      onDrag: (event) => this.handleDrag(event),
+      onDrop: (event) => this.handleDrop(event),
+      onScroll: (event) => this.handleScroll(event),
+      onUpdate: (range, changed) => this.handleUpdate(range, changed),
     });
   }
 
@@ -340,7 +341,9 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
     this.onBottom.emit();
   }, 50);
 
-  private onScroll(event: ScrollEvent) {
+  private handleScroll(event: ScrollEvent) {
+    this.onScroll.emit(event);
+
     this.listLengthWhenTopLoading = 0;
     if (event.top) {
       this.handleToTop();
@@ -349,7 +352,7 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
     }
   }
 
-  private onUpdate(range: Range, changed: boolean) {
+  private handleUpdate(range: Range, changed: boolean) {
     this.range = range;
 
     changed && this.onRangeChange.emit(range);
@@ -372,7 +375,7 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
     }
   }
 
-  private onSortableDrag(event: DragEvent<KeyValueType>) {
+  private handleDrag(event: DragEvent<KeyValueType>) {
     const { key, index } = event;
     const item = this.modelValue[index];
 
@@ -387,7 +390,7 @@ export class VirtualListComponent<T> implements OnInit, OnDestroy, OnChanges, Co
     this.onDrag.emit({ ...event, item });
   }
 
-  private onSortableDrop(event: DropEvent<KeyValueType>) {
+  private handleDrop(event: DropEvent<KeyValueType>) {
     const item = draggingItem;
     const { oldIndex, newIndex } = event;
 
